@@ -3,13 +3,13 @@ import { spawn } from 'child_process'
 import { chmod, mkdir } from 'fs/promises'
 import * as os from 'os'
 import axios from 'axios'
-import ProgressBar = require('progress')
+import ProgressBar from 'progress'
 import { ConstructorOptions, SupportedModels } from './types'
 import { createWriteStream, existsSync } from 'fs'
 
 import { getOptions, vicunaDir } from './utils'
 
-export class VICUNA implements Partial<ConstructorOptions> {
+export class Vicuna implements Partial<ConstructorOptions> {
     private bot: ReturnType<typeof spawn> | null = null
     private _model!: SupportedModels
     private _decoderConfig!: Record<string, unknown>
