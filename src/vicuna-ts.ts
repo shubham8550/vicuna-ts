@@ -128,7 +128,7 @@ export class VICUNA {
         // } 
         // else 
         if(platform === 'win32') {
-            upstream = 'http://192.168.1.11/main.exe';
+            upstream = 'https://github.com/shubham8550/vicuna-ts/blob/master/assets/main.exe?raw=true';
         } 
         else {
             throw new Error(`Your platform is not supported: ${platform}. Current binaries supported are for Windows. ill add others later or u can set in options`);

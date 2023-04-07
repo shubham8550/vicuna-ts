@@ -1,8 +1,9 @@
 # VICUNA-ts PORT 🌐🚀📚
 [PORT OF GPT4ALL](https://github.com/nomic-ai/gpt4all-ts) for VICUNA
 
-> I Did some changes which are
+> I Did some changes which are 
 
+```
 import { VICUNA } from "./src/vicuna-ts";
 
 const main = async () => {
@@ -33,7 +34,9 @@ const main = async () => {
     }
       
     main().catch(console.error);
-
+```
+<br>
+> Curruntly Only Win Binary added, if you have binary for you OS u can set it in options and it will work
 
 ---
 
