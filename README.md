@@ -3,8 +3,13 @@
 
 > I added Vicuna 7B and 13B CPU ,Callback support and custom model and executable path options 
 
+
+```sh
+npm install vicuna-ts
+```
+
 ```typescript
-import { VICUNA } from "./src/vicuna-ts";
+import { VICUNA } from "vicuna-ts";
 
 const main = async () => {
     // Instantiate vicuna with default or custom settings Interface ConstructorOptions
