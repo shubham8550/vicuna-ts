@@ -146,7 +146,14 @@ export class VICUNA {
     }
 
     private async downloadModel(): Promise<void> {
-        const modelUrl = `http://192.168.1.11/${this.model}.bin`;
+        let modelUrl=""
+        if(this.model=="ggml-vicuna-7b-4bit-rev1"){
+            modelUrl = `https://huggingface.co/eachadea/ggml-vicuna-7b-4bit/resolve/main/ggml-vicuna-7b-4bit-rev1.bin`;
+        }else if(this.model=="ggml-vicuna-13b-4bit-rev1"){
+            modelUrl = `https://huggingface.co/eachadea/ggml-vicuna-13b-4bit/resolve/main/ggml-vicuna-13b-4bit-rev1.bin`;
+        }else {
+            throw new Error(`Your Model Download URL not EXIST`);
+        }
 
         await this.downloadFile(modelUrl, this.modelPath);
 
