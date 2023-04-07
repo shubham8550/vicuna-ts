@@ -51,7 +51,7 @@ export class VICUNA implements Partial<ConstructorOptions> {
 
     constructor(opts: Partial<ConstructorOptions>) {
         this.options = getOptions(opts)
-        Object.assign(this, opts)
+        Object.assign(this, this.options)
 
         if (
             ('ggml-vicuna-13b-4bit-rev1' !== opts.model && 'ggml-vicuna-7b-4bit-rev1' !== opts.model) ||
