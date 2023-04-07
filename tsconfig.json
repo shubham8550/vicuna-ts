@@ -1,8 +1,18 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "outDir": "dist",
-        "rootDir": "src",
-        "lib": ["es2022", "dom"],
-    }
-}
+      "experimentalDecorators": true,            
+      "target": "ES6",                                
+      "module": "commonjs",                           
+      "lib": [
+        "ESNext"
+      ],                                   
+      "outDir": "./dist",                    
+      "strict": true,                                
+      "esModuleInterop": true,                        
+      "skipLibCheck": true,                          
+      "forceConsistentCasingInFileNames": true        
+    },
+    "include": [
+      "src/**/*"
+    ]
+  }
