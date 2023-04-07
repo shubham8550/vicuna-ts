@@ -61,7 +61,7 @@ interface ConstructorOptions{
 ---
 
 ## Port credit's : Shubham Badgujar
-
+## Model Credits: [vicuna Team](https://vicuna.lmsys.org/)
 
 
 ## Author Docs and credits:
