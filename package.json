@@ -2,13 +2,16 @@
   "name": "vicuna-ts",
   "version": "1.1.1",
   "description": "Vicuna Typescript bindings package",
-  "main": "dist/vicuna-ts.js",
-  "types": "dist/vicuna-ts.d.ts",
+  "main": "dist/index.js",
+  "types": "dist",
   "author": "Shubham Badgujar <vicunats@shubhambadgujar.com>",
   "license": "MIT",
+  "files": [
+    "./dist"
+  ],
   "private": false,
   "scripts": {
-    "test": "ts-node src/app.ts",
+    "test": "ts-node example",
     "build": "tsc -p .",
     "dev": "nodemon src/app.ts",
     "start": "node build/app.js",
@@ -22,10 +25,12 @@
     "progress": "^2.0.3"
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "@types/progress": "^2.0.5",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.37.0",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "ts-node": "^10.9.1"
   }
 }
