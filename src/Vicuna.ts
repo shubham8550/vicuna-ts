@@ -31,22 +31,22 @@ export class VICUNA implements ConstructorOptions {
     get decoderConfig() {
         return this._decoderConfig
     }
-    
+
     private set model(model: SupportedModels) {
         this._model = model
     }
-      
+
     private set executablePath(executablePath: string) {
-        this._executablePath = executablePath;
-      }
+        this._executablePath = executablePath
+    }
 
     private set modelPath(modelPath: string) {
-        this._modelPath = modelPath;
-      }
-      
+        this._modelPath = modelPath
+    }
+
     private set decoderConfig(decoderConfig: Record<string, unknown>) {
-        this._decoderConfig = decoderConfig;
-      }
+        this._decoderConfig = decoderConfig
+    }
 
     constructor(private options: ConstructorOptions) {
         options = getOptions(options)
