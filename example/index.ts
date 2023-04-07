@@ -1,9 +1,9 @@
 import { join } from 'path'
-import { VICUNA } from '../src'
+import { Vicuna } from '../src'
 
 const main = async () => {
     // Instantiate vicuna with default or custom settings
-    const vicuna = new VICUNA({
+    const vicuna = new Vicuna({
         model: 'ggml-vicuna-7b-4bit-rev1',
         modelPath: './ggml-vicuna-7b-4bit-rev1.bin',
         executablePath: join(process.cwd(), 'assets', 'main.exe'),
