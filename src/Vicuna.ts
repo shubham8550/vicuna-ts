@@ -3,18 +3,19 @@ import { spawn } from 'child_process'
 import { chmod, mkdir } from 'fs/promises'
 import * as os from 'os'
 import axios from 'axios'
-import * as ProgressBar from 'progress'
+import ProgressBar = require('progress')
 import { ConstructorOptions, SupportedModels } from './types'
 import { createWriteStream, existsSync } from 'fs'
 
 import { getOptions, vicunaDir } from './utils'
 
-export class VICUNA implements ConstructorOptions {
+export class VICUNA implements Partial<ConstructorOptions> {
     private bot: ReturnType<typeof spawn> | null = null
-    private _model: SupportedModels
-    private _decoderConfig: Record<string, unknown>
-    private _executablePath: string
-    private _modelPath: string
+    private _model!: SupportedModels
+    private _decoderConfig!: Record<string, unknown>
+    private _executablePath!: string
+    private _modelPath!: string
+    private options!: ConstructorOptions
 
     get model() {
         return this._model
@@ -48,16 +49,15 @@ export class VICUNA implements ConstructorOptions {
         this._decoderConfig = decoderConfig
     }
 
-    constructor(private options: ConstructorOptions) {
-        options = getOptions(options)
-        Object.assign(this, options)
-        console.log(options)
+    constructor(opts: Partial<ConstructorOptions>) {
+        this.options = getOptions(opts)
+        Object.assign(this, opts)
 
         if (
-            ('ggml-vicuna-13b-4bit-rev1' !== options.model && 'ggml-vicuna-7b-4bit-rev1' !== options.model) ||
-            options.modelOverride
+            ('ggml-vicuna-13b-4bit-rev1' !== opts.model && 'ggml-vicuna-7b-4bit-rev1' !== opts.model) ||
+            opts.modelOverride
         ) {
-            throw new Error(`Model ${options.model} is not supported. Current models supported are: 
+            throw new Error(`Model ${opts.model} is not supported. Current models supported are: 
                 ggml-vicuna-13b-4bit-rev1
                 ggml-vicuna-7b-4bit-rev1
 
@@ -110,7 +110,7 @@ export class VICUNA implements ConstructorOptions {
         ]
 
         for (const [key, value] of Object.entries(this.decoderConfig)) {
-            spawnArgs.push(`--${key}`, value.toString())
+            spawnArgs.push(`--${key}`, (value as unknown as string).toString())
         }
 
         this.bot = spawn(spawnArgs[0], spawnArgs.slice(1), { stdio: ['pipe', 'pipe', 'ignore'] })
@@ -196,7 +196,7 @@ export class VICUNA implements ConstructorOptions {
             throw new Error('Bot is not initialized.')
         }
 
-        this.bot.stdin.write(prompt + '\n')
+        if (this.bot.stdin) this.bot.stdin.write(prompt + '\n')
 
         return new Promise((resolve, reject) => {
             let response = ''
@@ -210,7 +210,7 @@ export class VICUNA implements ConstructorOptions {
 
                 if (text.includes('>')) {
                     // console.log('Response starts with >, end of message - Resolving...'); // Debug log: Indicate that the response ends with "\\f"
-                    this.options.callback('<end>')
+                    if (this.options.callback) this.options.callback('<end>')
                     terminateAndResolve(response) // Remove the trailing "\f" delimiter
                 } else {
                     timeoutId = setTimeout(() => {
@@ -225,12 +225,14 @@ export class VICUNA implements ConstructorOptions {
             }
 
             const onStdoutError = (err: Error) => {
+                if (!this.bot?.stdout) return reject(err)
                 this.bot.stdout.removeListener('data', onStdoutData)
                 this.bot.stdout.removeListener('error', onStdoutError)
                 reject(err)
             }
 
             const terminateAndResolve = (finalResponse: string) => {
+                if (!this.bot?.stdout) return resolve(finalResponse)
                 this.bot.stdout.removeListener('data', onStdoutData)
                 this.bot.stdout.removeListener('error', onStdoutError)
                 // check for > at the end and remove it
@@ -239,7 +241,7 @@ export class VICUNA implements ConstructorOptions {
                 }
                 resolve(finalResponse)
             }
-
+            if (!this.bot?.stdout) return
             this.bot.stdout.on('data', onStdoutData)
             this.bot.stdout.on('error', onStdoutError)
         })

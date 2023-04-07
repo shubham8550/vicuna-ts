@@ -10,12 +10,12 @@ const defaultOptions: ConstructorOptions = {
     forceDownload: false,
     decoderConfig: {},
     modelOverride: false,
-    callback: () => true
+    callback: () => true,
+    modelPath: ''
 }
 
 export const getOptions = (options: Partial<ConstructorOptions>): ConstructorOptions => {
     const finalOptions = Object.assign({}, defaultOptions, options)
-    console.log(finalOptions)
     if (!finalOptions.modelPath) finalOptions.modelPath = vicunaDir(finalOptions.modelPath.concat('.bin'))
     return finalOptions
 }
