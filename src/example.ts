@@ -1,4 +1,4 @@
-import { VICUNA } from "./src/vicuna-ts";
+import { VICUNA } from "./vicuna-ts";
 
 const main = async () => {
     // Instantiate vicuna with default or custom settings
