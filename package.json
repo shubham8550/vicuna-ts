@@ -7,7 +7,7 @@
   "author": "Shubham Badgujar <vicunats@shubhambadgujar.com>",
   "license": "MIT",
   "files": [
-    "./dist"
+    "./dist/**/*"
   ],
   "private": false,
   "scripts": {
