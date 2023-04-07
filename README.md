@@ -1,9 +1,9 @@
 # VICUNA-ts PORT 🌐🚀📚
 [PORT OF GPT4ALL](https://github.com/nomic-ai/gpt4all-ts) for VICUNA
 
-> I Did some changes which are 
+> I added Vicuna 7B and 13B CPU ,Callback support and custom model and executable path options 
 
-```
+```typescript
 import { VICUNA } from "./src/vicuna-ts";
 
 const main = async () => {
@@ -35,6 +35,21 @@ const main = async () => {
       
     main().catch(console.error);
 ```
+
+-  ## Options
+```typescript
+interface ConstructorOptions{
+    model: "ggml-vicuna-13b-4bit-rev1" | "ggml-vicuna-7b-4bit-rev1",
+    executablePath?: string,
+    modelPath?: string,
+    callback?:(token)=>void,
+    forceDownload?: boolean ,
+    decoderConfig?: Record<string, any>,
+    modelOverride?:boolean
+}
+```
+
+
 <br>
 > Curruntly Only Win Binary added, if you have binary for you OS u can set it in options and it will work
 
