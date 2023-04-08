@@ -146,7 +146,7 @@ export class VICUNA implements Partial<ConstructorOptions> {
         await this.downloadFile(upstream, this.executablePath)
 
         await chmod(this.executablePath, 0o755)
-
+        
         console.log(`File downloaded successfully to ${this.executablePath}`)
     }
 
@@ -159,7 +159,6 @@ export class VICUNA implements Partial<ConstructorOptions> {
         } else {
             throw new Error(`Your Model Download URL not EXIST`)
         }
-
         await this.downloadFile(modelUrl, this.modelPath)
 
         console.log(`File downloaded successfully to ${this.modelPath}`)
@@ -175,7 +174,7 @@ export class VICUNA implements Partial<ConstructorOptions> {
             total: totalSize
         })
         const dir = vicunaDir()
-        if (existsSync(dir)) await mkdir(dir)
+        if (!existsSync(dir)) await mkdir(dir)
 
         const writer = createWriteStream(destination)
 
