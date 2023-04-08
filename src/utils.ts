@@ -5,7 +5,7 @@ import { ConstructorOptions } from './types'
 export const vicunaDir = (...subpaths: string[]): string => join(homedir(), '.vicuna-ts', ...subpaths)
 
 const defaultOptions: ConstructorOptions = {
-    model: 'ggml-vicuna-7b-4bit-rev1', 
+    model: 'ggml-vicuna-7b-4bit-rev1',
     executablePath: vicunaDir('main.exe'),
     forceDownload: false,
     decoderConfig: {},
