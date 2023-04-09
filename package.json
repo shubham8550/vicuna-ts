@@ -1,6 +1,6 @@
 {
   "name": "vicuna-ts",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Vicuna Typescript bindings package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
