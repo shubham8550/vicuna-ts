@@ -56,7 +56,7 @@ interface ConstructorOptions{
 
 
 <br>
-> Curruntly Only Win Binary added, if you have binary for you OS u can set it in options and it will work
+> Curruntly Only Win Binary added, if you have binary for your OS u can set it in options and it will work
 
 ---
 
