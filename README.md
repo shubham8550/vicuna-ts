@@ -1,5 +1,5 @@
-# VICUNA-ts PORT 🌐🚀📚
-[PORT OF GPT4ALL](https://github.com/nomic-ai/gpt4all-ts) for VICUNA
+# VICUNA-ts 🌐🚀📚
+
 
 > I added Vicuna 7B and 13B CPU ,Callback support and custom model and executable path options 
 
